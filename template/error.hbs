@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!--[if !mso]><! -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!--<![endif]-->
+</head>
+<body>
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6; font-size: larger">
+    Er is een fout opgetreden in <b>{{subject}}</b>.
+</p>
+<br/>
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:2;">
+    We hebben een potentieel probleem op Loket geïdentificeerd. De volgende fout is opgetreden:
+</p>
+<div style="
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;">
+<pre style="font-size: small">
+    <b style="line-height: 2">{{message}}</b>
+    {{#if stacktrace}}
+    &gt; {{stacktrace}}
+    {{/if}}
+</pre>
+</div>
+<br/>
+{{#if reference}}
+    <div>
+        <p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">
+            <b>Getroffen resource</b>: <a style="color: #007bff" href={{reference}}>{{reference}}</a>
+        </p>
+        <br/>
+    </div>
+{{/if}}
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">
+    Als deze fout zich blijft voordoen, aarzel dan niet om contact met ons op te nemen!
+</p>
+<br>
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">Het LBLOD ontwikkelingsteam</p>
+<br/>
+<p style="color:gray; margin:0; line-height:1.6; font-family:sans-serif; letter-spacing:normal; font-size: small">
+    Opgelet, reageren op deze mail kan niet. Voor verdere hulp, mail naar <a style="color: #007bff; text-decoration: none" href="mailto:loketlokaalbestuur@vlaanderen.be" target="_blank">loketlokaalbestuur@vlaanderen.be</a>.
+</p>
+</body>
+</html>

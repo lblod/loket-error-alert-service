@@ -1,0 +1,19 @@
+{
+  "name": "loket-error-alert-service",
+  "version": "1.0.0",
+  "description": "service that sends out alerts when errors are inserted/found into the store.",
+  "main": "app.js",
+  "dependencies": {
+    "@lblod/mu-auth-sudo": "0.2.0",
+    "axios": "0.22.0",
+    "body-parser": "1.19.0",
+    "env-var": "7.0.1",
+    "handlebars": "4.7.7",
+    "lodash.flatten": "4.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "loketlokaalbestuur@vlaanderen.be",
+  "license": "MIT"
+}
