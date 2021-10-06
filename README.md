@@ -51,8 +51,8 @@ These can be added in within the docker declaration.
 
 | Name | Description | Default |
 |---|---|---|
-| `EMAIL_FROM` | Sender of the emails/alerts. ex: "test@domain.net,123@domain.com"  | **Required** |
-| `EMAIL_TO` | Receiver(s) of the emails/alerts. ex: "test@domain.net" | **Required** |
+| `EMAIL_FROM` | Sender of the emails/alerts. ex: "test@domain.net" | **Required** |
+| `EMAIL_TO` | Receiver(s) of the emails/alerts. ex: "test@domain.net,123@domain.com" | **Required** |
 | `DEBUG` | Enable extra logging.  | `false or 0` |
 
 ### [Optional] Config
