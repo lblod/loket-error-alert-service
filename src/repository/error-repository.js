@@ -2,7 +2,7 @@ import { sparqlEscapeUri as URI } from 'mu';
 import { querySudo as query } from '@lblod/mu-auth-sudo';
 
 import Error from '../model/error';
-import { mapQueryResultToClazz } from '../util/sparql-util';
+import { parseResultToClazz } from '../util/sparql-util';
 
 class ErrorRepository {
 
@@ -15,7 +15,7 @@ class ErrorRepository {
   static findByURI = async function(uri) {
     if (!uri)
       throw 'uri can not be null.';
-    const result = mapQueryResultToClazz(await query(`
+    const result = parseResultToClazz(await query(`
       PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
       PREFIX oslc: <http://open-services.net/ns/core#>
       PREFIX dct: <http://purl.org/dc/terms/>

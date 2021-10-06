@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 
 import { app, errorHandler } from 'mu';
 import config from './config';
+import ResourceExistsError from './src/error/resource-exists-error';
 
 import ErrorRepository from './src/repository/error-repository';
 import EmailRepository from './src/repository/email-repository';
@@ -9,6 +10,7 @@ import EmailFactory from './src/factory/email-factory';
 import Delta from './src/model/delta';
 
 import { DEBUG } from './env';
+import AlertService from './src/service/alert-service';
 import DeltaService from './src/service/delta-service';
 
 if (DEBUG)
@@ -51,8 +53,7 @@ app.post('/delta', (req, res) => {
  * Create an alert for the given {@link Error}.
  * Only {@link Email} for now.
  */
-export const ALERT_ENDPOINT = '/alert';
-app.post(ALERT_ENDPOINT, async (req, res, next) => {
+app.post('/alert', async (req, res, next) => {
   const {body} = req;
 
   if (!body.ref)
@@ -63,13 +64,11 @@ app.post(ALERT_ENDPOINT, async (req, res, next) => {
     if (!error)
       return res.status(404).send({errors: [{description: `could not retrieve error for <${body.ref}>`}]});
 
-    let email = await EmailRepository.findOneByError(error);
-    if (email)
-      return res.status(202).send({ref: email.uri});
-
-    email = await EmailRepository.create(EmailFactory.forError(error));
-    res.status(200).send({uri: email.uri, uuid: email.uuid});
+    const email = await AlertService.create(error);
+    res.status(200).send({uri: email.uri});
   } catch (e) {
+    if (e instanceof ResourceExistsError)
+      return res.status(202).send({ref: e.resource.uri});
     console.error(e);
     return next(e);
   }

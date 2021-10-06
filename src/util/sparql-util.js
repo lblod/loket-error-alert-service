@@ -6,21 +6,27 @@
  *
  * @returns [Class] | Class | null
  */
-export const mapQueryResultToClazz = ({head, results}, clazz) => {
+export const parseResultToClazz = ({head, results}, clazz) => {
   if (!head)
-    throw 'virtuoso query-result did not contain a head, cannot map.';
+    throw 'virtuoso result did not contain a head, cannot map.';
   if (!head.vars || head.vars.length === 0)
-    throw 'virtuoso query-result did not contain any vars, cannot map.';
+    throw 'virtuoso result did not contain any vars, cannot map.';
 
   if (!results || !results.bindings || results.bindings.length === 0)
     return null;
 
-  let result = results.bindings.map(binding => {
-    const map = {};
-    head.vars.forEach(variable => {
-      map[variable] = binding[variable] && binding[variable].value;
+  let result = results.bindings.map(row => {
+    const obj = {};
+    head.vars.forEach(key => {
+      if(row[key] && row[key].datatype === 'http://www.w3.org/2001/XMLSchema#integer' && row[key].value){
+        obj[key] = parseInt(row[key].value);
+      }
+      else if(row[key] && row[key].datatype === 'http://www.w3.org/2001/XMLSchema#dateTime' && row[key].value){
+        obj[key] = new Date(row[key].value);
+      }
+      else obj[key] = row[key] ? row[key].value:undefined;
     });
-    return new clazz(map);
+    return new clazz(obj);
   });
 
   if (result.length === 1)

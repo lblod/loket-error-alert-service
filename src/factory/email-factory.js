@@ -22,13 +22,13 @@ class EmailFactory {
    */
   static forError = function({uri: errorURI, subject, message, stacktrace, created, reference}) {
     const template = handlebars.compile(fs.readFileSync(ERROR_TEMPLATE, 'utf8'));
-    const content = template({subject, created, message, stacktrace, reference});
+    const content = template({subject, message, stacktrace, reference});
     const uri = EmailRepository.BASE + '/' + uuid();
     return new Email({
       uri,
       uuid: deriveUUIDFromURI(uri),
       folder: config.email.folder,
-      subject: `[ERROR] ${subject} | ${created}`,
+      subject: `[ERROR] ${subject} | ${created.toISOString()}`,
       content,
       to: EMAIL_TO,
       from: EMAIL_FROM,

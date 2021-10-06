@@ -2,7 +2,7 @@ import { sparqlEscapeUri as URI, sparqlEscapeString } from 'mu';
 import { querySudo as query, updateSudo as update } from '@lblod/mu-auth-sudo';
 import config from '../../config';
 
-import { mapQueryResultToClazz } from '../util/sparql-util';
+import { parseResultToClazz } from '../util/sparql-util';
 import Email from '../model/email';
 
 class EmailRepository {
@@ -30,7 +30,7 @@ class EmailRepository {
   static findOneByRef = async function(ref) {
     if (!ref)
       throw 'ref can not be null.';
-    const result = mapQueryResultToClazz(await query(`
+    const result = parseResultToClazz(await query(`
       PREFIX nmo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#>
       PREFIX mu:  <http://mu.semte.ch/vocabularies/core/>
       PREFIX dct: <http://purl.org/dc/terms/>

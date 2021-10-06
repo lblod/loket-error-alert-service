@@ -1,9 +1,7 @@
-import Axios from 'axios';
-import { ALERT_ENDPOINT } from '../../app';
 import config from '../../config';
-import { DEBUG } from '../../env';
 import ErrorRepository from '../repository/error-repository';
 import Error from '../model/error';
+import AlertService from './alert-service';
 
 class DeltaService {
 
@@ -29,12 +27,8 @@ class DeltaService {
     if (errors.length === 0)
       return console.log('Delta did not contain anything of interest, nothing should happen.');
 
-    const requests = errors.map(error => Axios.post('http://localhost' + ALERT_ENDPOINT, {ref: error.uri}));
-    const responses = await Promise.all(requests);
-
+    await Promise.allSettled(errors.map(error => AlertService.create(error)));
     console.log('Processed delta, sent out alerts.');
-    if (DEBUG)
-      console.debug('[delta-service] Responses:', responses);
   };
 }
 
