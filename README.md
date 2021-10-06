@@ -19,7 +19,7 @@ services:
 
 Paste the following snip-it in your `delta/rules.js`:
 
-```json lines
+```json5
 {
   match: {
     predicate: {
@@ -67,7 +67,7 @@ error-alert:
 ```
 
 2) add the `config.json` within `./config/error-alert/`:
-```json lines
+```json5
 {
   // URI Base to be used at data creation.
   "base": string, // Default: "http://lblod.data.gift"
