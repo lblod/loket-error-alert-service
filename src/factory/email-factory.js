@@ -8,8 +8,6 @@ import { EMAIL_FROM, EMAIL_TO } from '../../env';
 import EmailRepository from '../repository/email-repository';
 import Email from '../model/email';
 
-import { deriveUUIDFromURI } from '../util/sparql-util';
-
 const ERROR_TEMPLATE = './app/template/error.hbs';
 
 class EmailFactory {
@@ -23,10 +21,11 @@ class EmailFactory {
   static forError = function({uri: errorURI, subject, message, detail, created, reference}) {
     const template = handlebars.compile(fs.readFileSync(ERROR_TEMPLATE, 'utf8'));
     const content = template({subject, message, detail, reference});
-    const uri = EmailRepository.BASE + '/' + uuid();
+    const id = uuid()
+    const uri = EmailRepository.BASE + '/' + id;
     return new Email({
       uri,
-      uuid: deriveUUIDFromURI(uri),
+      uuid: id,
       folder: config.email.folder,
       subject: `[ALERT] ${created.toISOString()} | ${subject} `,
       content,
