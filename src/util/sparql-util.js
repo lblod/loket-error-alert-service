@@ -34,7 +34,18 @@ export const parseResultToClazz = ({head, results}, clazz) => {
   return result;
 };
 
+/**
+ * Derives UUID from the given URI.
+ * Expects the URI to contain one, but only one, valid UUID.
+ *
+ * @param uri
+ * @returns {*}
+ */
 export const deriveUUIDFromURI = (uri) => {
-  let split = uri.split("/");
-  return split[split.length - 1];
+  const results = uri.match(/[\w]{8}(-[\w]{4}){3}-[\w]{12}/g);
+  if(!results || results.length === 0)
+    throw 'URI did not contain a valid UUID.'
+  if(!results.length > 1)
+    throw 'URI contained multiple UUID\'s, do not know what to pick.'
+  return results[0];
 };
