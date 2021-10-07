@@ -5,11 +5,11 @@ import Resource from './resource';
  */
 class Error extends Resource {
 
-  constructor({uri, uuid, subject, message, stacktrace, created, creator, reference}) {
+  constructor({uri, uuid, subject, message, detail, created, creator, reference}) {
     super(uri, uuid);
     this.subject = subject;
     this.message = message;
-    this.stacktrace = stacktrace;
+    this.detail = detail;
     this.created = created;
     this.creator = creator;
     this.reference = reference;
@@ -23,17 +23,15 @@ class Error extends Resource {
    * @returns {boolean}
    */
   static isValid = function(error) {
-    if(error == null)
+    if(!error)
       return false
-    if(error.subject == null || error.subject === "")
+    if(!error.subject)
       return false;
-    if(error.message == null || error.message === "")
+    if(!error.message)
       return false;
-    if(error.created == null || error.created === "")
+    if(!error.created)
       return false;
-    if(error.creator == null || error.creator === "")
-      return false;
-    return true;
+    return error.creator;
   }
 }
 

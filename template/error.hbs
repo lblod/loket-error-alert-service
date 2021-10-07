@@ -12,41 +12,41 @@
     <!--<![endif]-->
 </head>
 <body>
-<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6; font-size: larger">
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:2.5; font-size: x-large">
     Er is een fout opgetreden in <b>{{subject}}</b>.
 </p>
-<br/>
-<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:2;">
-    We hebben een potentieel probleem op Loket geïdentificeerd. De volgende fout is opgetreden:
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.4;">
+    We hebben een potentieel probleem op Loket geïdentificeerd.
 </p>
-<div style="
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.4;">
+    De volgende fout is opgetreden: <b>{{message}}</b>
+</p>
+{{#if detail}}
+    <div style="
   color: #ba3939;
   background: #ffe0e0;
-  border: 1px solid #a33a3a;">
-<pre style="font-size: small">
-    <b style="line-height: 2">{{message}}</b>
-    {{#if stacktrace}}
-    &gt; {{stacktrace}}
-    {{/if}}
-</pre>
-</div>
-<br/>
+  border: 1px solid #a33a3a;
+  margin: 10px 0;
+  padding-left: 10px">
+        <pre style="font-size: small"><code>{{detail}}</code></pre>
+    </div>
+{{/if}}
 {{#if reference}}
     <div>
-        <p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">
+        <p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.4;">
             <b>Getroffen resource</b>: <a style="color: #007bff" href={{reference}}>{{reference}}</a>
         </p>
         <br/>
     </div>
 {{/if}}
-<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.4;">
     Als deze fout zich blijft voordoen, aarzel dan niet om contact met ons op te nemen!
 </p>
-<br>
-<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.6;">Het LBLOD ontwikkelingsteam</p>
+<p style="margin:0; font-family:sans-serif; letter-spacing:normal; line-height:1.4;">Het LBLOD ontwikkelingsteam</p>
 <br/>
 <p style="color:gray; margin:0; line-height:1.6; font-family:sans-serif; letter-spacing:normal; font-size: small">
-    Opgelet, reageren op deze mail kan niet. Voor verdere hulp, mail naar <a style="color: #007bff; text-decoration: none" href="mailto:loketlokaalbestuur@vlaanderen.be" target="_blank">loketlokaalbestuur@vlaanderen.be</a>.
+    Opgelet, reageren op deze mail kan niet. Voor verdere hulp, mail naar <a
+        style="color: #007bff; text-decoration: none" href="mailto:loketlokaalbestuur@vlaanderen.be" target="_blank">loketlokaalbestuur@vlaanderen.be</a>.
 </p>
 </body>
 </html>

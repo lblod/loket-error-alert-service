@@ -151,7 +151,7 @@ error-alert:
 |---|---|---|---|
 | subject | [`dct:subject`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject) | `xsd:string` | Service failed, threw the error. |
 | message | [`oslc:message`](https://docs.oasis-open-projects.org/oslc-op/core/v3.0/ps01/core-vocab.html#message) | `xsd:string` | Short description of the error. (what functionally went wrong) |
-| stacktrace | [`oslc:largePreview`](https://docs.oasis-open-projects.org/oslc-op/core/v3.0/ps01/core-vocab.html#largePreview) | `xsd:string` | Stacktrace of the error. *Optional* |
+| detail | [`oslc:largePreview`](https://docs.oasis-open-projects.org/oslc-op/core/v3.0/ps01/core-vocab.html#largePreview) | `xsd:string` | Detail of the error. Could be the stacktrace, request, ect. *Optional* |
 | references | [`dct:references`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/references) | `xsd:anyURI` | Resource the error is related to. *Optional* |
 | created | [`dct:created`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/created) | `xsd:dateTime` | Time the error occurred and was logged. |
 | creator | [`dct:creator`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator) | `xsd:anyURI` | Service that threw the error. |

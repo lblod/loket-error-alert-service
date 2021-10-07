@@ -20,7 +20,7 @@ class ErrorRepository {
       PREFIX oslc: <http://open-services.net/ns/core#>
       PREFIX dct: <http://purl.org/dc/terms/>
       
-      SELECT ?uri ?uuid ?subject ?message ?stacktrace ?created ?creator ?reference WHERE {
+      SELECT ?uri ?uuid ?subject ?message ?detail ?created ?creator ?reference WHERE {
         VALUES ?uri { ${URI(uri)} }
         ?uri a oslc:Error ;
              mu:uuid ?uuid ;
@@ -29,7 +29,7 @@ class ErrorRepository {
              dct:created ?created ;
              dct:creator ?creator .
         OPTIONAL { ?uri dct:references ?reference . }                 
-        OPTIONAL { ?uri oslc:largePreview ?stacktrace . }                 
+        OPTIONAL { ?uri oslc:largePreview ?detail . }                 
       }
     `), Error);
     if (!result)
