@@ -5,11 +5,11 @@ let EMAIL_TO;
 
 try {
   EMAIL_FROM =
-      env.get('EMAIL_TO')
+      env.get('EMAIL_FROM')
          .required()
          .asString();
   EMAIL_TO =
-      env.get('EMAIL_FROM')
+      env.get('EMAIL_TO')
          .required()
          .asString();
 } catch (e) {
