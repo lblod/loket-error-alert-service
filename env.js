@@ -1,14 +1,26 @@
 import env from 'env-var';
 
-export const EMAIL_FROM =
-    env.get('EMAIL_TO')
-       .required()
-       .asString();
-export const EMAIL_TO =
-    env.get('EMAIL_FROM')
-       .required()
-       .asString();
-export const DEBUG =
+let EMAIL_FROM;
+let EMAIL_TO;
+
+try {
+  EMAIL_FROM =
+      env.get('EMAIL_TO')
+         .required()
+         .asString();
+  EMAIL_TO =
+      env.get('EMAIL_FROM')
+         .required()
+         .asString();
+} catch (e) {
+  console.warn('Required environment variable was not found:')
+  console.warn(e);
+  process.exit();
+}
+
+const DEBUG =
     env.get('DEBUG')
        .default('false')
        .asBool();
+
+export { EMAIL_FROM, EMAIL_TO, DEBUG };
