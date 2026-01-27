@@ -23,4 +23,14 @@ const DEBUG =
        .default('false')
        .asBool();
 
-export { EMAIL_FROM, EMAIL_TO, DEBUG };
+const APP_NAME =
+    env.get('APP_NAME')
+        .default('Loket')
+        .asString();
+
+const EMAIL_HELP =
+    env.get('EMAIL_HELP')
+        .default('loketlokaalbestuur@vlaanderen.be')
+        .asString();
+
+export { EMAIL_FROM, EMAIL_TO, DEBUG, APP_NAME, EMAIL_HELP };
