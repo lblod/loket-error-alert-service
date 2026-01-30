@@ -3,7 +3,7 @@ import handlebars from 'handlebars';
 
 import { uuid } from 'mu';
 import config from '../../config';
-import { EMAIL_FROM, EMAIL_TO } from '../../env';
+import { EMAIL_FROM, EMAIL_TO, APP_NAME, EMAIL_HELP } from '../../env';
 
 import EmailRepository from '../repository/email-repository';
 import Email from '../model/email';
@@ -20,7 +20,7 @@ class EmailFactory {
    */
   static forError = function({uri: errorURI, subject, message, detail, created, reference}) {
     const template = handlebars.compile(fs.readFileSync(ERROR_TEMPLATE, 'utf8'));
-    const content = template({subject, message, detail, reference});
+    const content = template({subject, message, detail, reference, appName: APP_NAME, emailHelp: EMAIL_HELP});
     const id = uuid()
     const uri = EmailRepository.BASE + '/' + id;
     return new Email({
