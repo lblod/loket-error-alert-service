@@ -1,6 +1,6 @@
 {
   "name": "loket-error-alert-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "service that sends out alerts when errors are inserted/found into the store.",
   "main": "app.js",
   "dependencies": {
