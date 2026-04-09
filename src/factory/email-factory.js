@@ -8,7 +8,7 @@ import { EMAIL_FROM, EMAIL_TO, APP_NAME, EMAIL_HELP } from '../../env';
 import EmailRepository from '../repository/email-repository';
 import Email from '../model/email';
 
-const ERROR_TEMPLATE = './app/template/error.hbs';
+const ERROR_TEMPLATE = process.env.ERROR_TEMPLATE || './app/template/error.hbs';
 
 class EmailFactory {
 
@@ -20,7 +20,7 @@ class EmailFactory {
    */
   static forError = function({uri: errorURI, subject, message, detail, created, reference}) {
     const template = handlebars.compile(fs.readFileSync(ERROR_TEMPLATE, 'utf8'));
-    const content = template({subject, message, detail, reference, appName: APP_NAME, emailHelp: EMAIL_HELP});
+    const content = template({created: created.toISOString(), subject, message, detail, reference, appName: APP_NAME, emailHelp: EMAIL_HELP});
     const id = uuid()
     const uri = EmailRepository.BASE + '/' + id;
     return new Email({
