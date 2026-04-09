@@ -54,6 +54,7 @@ These can be added in within the docker declaration.
 | `EMAIL_FROM` | Sender of the emails/alerts. ex: "test@domain.net" | **Required** |
 | `EMAIL_TO` | Receiver(s) of the emails/alerts. ex: "test@domain.net,123@domain.com" | **Required** |
 | `DEBUG` | Enable extra logging.  | `false or 0` |
+| `ERROR_TEMPLATE` | Use your own error.hbs template  | Path to `.hbs` file in the project |
 
 ### [Optional] Config
 
@@ -87,6 +88,16 @@ error-alert:
   }
 }
 ```
+
+3) extend your `docker-compose.yml` service with a volume for your custom template & set the environment
+```yml
+environment:
+  ERROR_TEMPLATE: "/mnt/templates/error.hbs"
+volumes:
+  - ./config/error.hbs:/mnt/templates/error.hbs:ro
+```
+
+> The template can be changed but check the code for what variables can be used in it!
 
 ## API
 
