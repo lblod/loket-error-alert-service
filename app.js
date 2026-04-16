@@ -5,8 +5,6 @@ import config from './config';
 import ResourceExistsError from './src/error/resource-exists-error';
 
 import ErrorRepository from './src/repository/error-repository';
-import EmailRepository from './src/repository/email-repository';
-import EmailFactory from './src/factory/email-factory';
 import Delta from './src/model/delta';
 
 import { DEBUG } from './env';

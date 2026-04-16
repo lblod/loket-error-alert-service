@@ -35,7 +35,7 @@ class ErrorRepository {
     if (!result)
       return result;
     if (result.length > 1)
-      throw `multiple results exists while doint lookup on URI <${uri}>, data corrupt?`;
+      throw `multiple results exists while doing lookup on URI <${uri}>, data corrupt?`;
     return result;
   };
 }
